@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Trigger dependent workflow
+        run: |
+          curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.PAT }}" \
+          https://api.github.com/repos/GauravSharma1199/common-data-goldplus/dispatches \
+          -d '{"event_type": "build_completed", "client_payload": { "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"} }'
+          
       - name: Checkout code
         uses: actions/checkout@v3
 
