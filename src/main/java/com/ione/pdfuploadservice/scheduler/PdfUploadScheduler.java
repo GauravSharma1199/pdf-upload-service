@@ -21,9 +21,6 @@ import java.sql.SQLException;
 import java.util.Date;
 
 
-
-
-
 @Component
 public class PdfUploadScheduler {
     @Autowired
